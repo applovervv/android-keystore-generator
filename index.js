@@ -171,11 +171,11 @@ app.post("/generate-key", async (req, res) => {
   );
 
   if (generateResult.success) {
-    const verifyResult = verifyKeystore(
-      generateResult.keystorePath,
-      alias,
-      storePassword
-    );
+    // const verifyResult = verifyKeystore(
+    //   generateResult.keystorePath,
+    //   alias,
+    //   storePassword
+    // );
 
     res.download(generateResult.keystorePath, keystore, (err) => {
       if (err) {
