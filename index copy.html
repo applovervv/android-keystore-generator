@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Keystore Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h4{
+            margin-top: 0px;
+            margin-bottom: 5px;
+        }
+        .m2{
+            text-align: center;
+            color: #1bc137;
+            padding: 10px;
+        }
+        form {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .description {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f0f0f0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .password-container {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+    <script>
+      function onloadCallback() {
+            recaptchaWidget = grecaptcha.render('recaptcha', {
+                'sitekey' : 'YOUR_ACTUAL_SITE_KEY',
+                'size' : 'invisible',
+                'callback' : onSubmit
+            });
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  
+
+    <h1>Android Keystore Generator</h1>
+    <div class="m2">
+        <h4>The generated keystore file is securely deleted from the server immediately after download.</h4>
+        <h4>All requested keystore information is not collected.</h2>
+    </div>
+    <form id="keyGeneratorForm">
+
+    
+      
+        <label for="alias">Alias</label>
+        <input type="text" id="alias" name="alias" required>
+
+        <label for="keyPassword">Key Password</label>
+        <div class="password-container">
+            <input type="password" id="keyPassword" name="keyPassword" required>
+            <span class="password-toggle" onclick="togglePassword('keyPassword',this)">🙈</span>
+        </div>
+
+        <label for="storePassword">Store Password</label>
+        <div class="password-container">
+            <input type="password" id="storePassword" name="storePassword" required>
+            <span class="password-toggle" onclick="togglePassword('storePassword',this)">🙈</span>
+        </div>
+
+        <label for="validityDays">Validity (years)</label>
+        <input type="number" id="validityDays" name="validityYears" value="25" required>
+
+        <h2>Certificate</h2>
+
+        <label for="CN">Common Name</label>
+        <input type="text" id="CN" name="CN">
+        <div class="description">Individual or server name (e.g., John Doe, www.example.com)</div>
+
+        <label for="OU">Organizational Unit</label>
+        <input type="text" id="OU" name="OU">
+        <div class="description">Department or division (e.g., IT Department, Web Services)</div>
+
+        <label for="O">Organization</label>
+        <input type="text" id="O" name="O">
+        <div class="description">Company or institution name (e.g., Acme Inc., Example University)</div>
+
+        <label for="L">City or Locality</label>
+        <input type="text" id="L" name="L">
+        <div class="description">City or locality (e.g., Seoul, New York)</div>
+
+        <label for="ST">State or Province</label>
+        <input type="text" id="ST" name="ST">
+        <div class="description">State or province name (e.g., Gyeonggi-do, California)</div>
+
+        <label for="C">Country Code (XX)</label>
+        <input type="text" id="C" name="C">
+        <div class="description">2-letter country code (e.g., KR, US, JP)</div>
+
+        <button type="submit" id="gen-btn" onclick="grecaptcha.execute()">Generate keystore</button>
+
+        <div class="g-recaptcha"
+        data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+        data-size="invisible">
+      </div>
+      
+    </form>
+
+    <div id="result" style="display :none;"></div>
+
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.innerHTML = '👀'; // 눈 아이콘 (비밀번호 표시 중)
+            } else {
+                input.type = 'password';
+                button.innerHTML = '🙈'; // 원숭이 눈 가리는 아이콘 (비밀번호 숨김 중)
+            }
+        }
+        let recaptchaWidget;
+
+        function onloadCallback() {
+            recaptchaWidget = grecaptcha.render('recaptcha', {
+                'sitekey' : 'YOUR_ACTUAL_SITE_KEY',
+                'size' : 'invisible',
+                'callback' : onSubmit
+            });
+        }
+
+        function onSubmit(token) {
+            document.getElementById("keyGeneratorForm").submit();
+        }
+
+
+        document.getElementById('keyGeneratorForm').addEventListener('submit', async function(e) {
+            // e.preventDefault();
+            e.preventDefault();
+            grecaptcha.execute(recaptchaWidget);
+            // console.log("keyGeneratorForm.submiT!")
+              // reCAPTCHA 실행
+             grecaptcha.execute();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            data.dname = {
+                CN: data.CN,
+                OU: data.OU,
+                O: data.O,
+                L: data.L,
+                ST: data.ST,
+                C: data.C
+            };
+        
+
+            ['CN', 'OU', 'O', 'L', 'ST', 'C'].forEach(key => delete data[key]);
+
+            try {
+
+                const genBtn = document.getElementById('gen-btn')
+
+                genBtn.textContent = "키 생성중..."
+                
+                console.log(grecaptcha.getResponse())
+                 // reCAPTCHA 응답 추가
+                data['g-recaptcha-response'] = grecaptcha.getResponse();
+
+                const response = await fetch('generate-key', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                
+                document.getElementById('result').style = "block"
+                // grecaptcha.reset();
+                
+                if (response.ok) {
+                    genBtn.textContent = "키 생성"
+                    const blob = await response.blob();
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = downloadUrl;
+                    a.download = `${data.alias}_keystore.keystore`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(downloadUrl);
+                    document.getElementById('result').textContent = '키스토어 파일이 성공적으로 생성되어 다운로드되었습니다.';
+                } else {
+                    genBtn.textContent = "키 생성"
+                    const errorData = await response.json();
+                    document.getElementById('result').textContent = '오류 발생: ' + errorData.message;
+                }
+
+                
+            } catch (error) {
+                genBtn.textContent = "키 생성"
+                document.getElementById('result').style = "block"
+                document.getElementById('result').textContent = '오류 발생: ' + error.message;
+            } 
+            // finally {
+            //     // reCAPTCHA 리셋
+            //     grecaptcha.reset();
+            // }
+        });
+    </script>
+</body>
+</html>
