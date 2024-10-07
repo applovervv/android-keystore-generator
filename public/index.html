@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile App Keystore Generator for Android - Secure Signing Tool</title>
-
+    <title>Mobile App Keystore Generator for Android - Keystore Generator tool</title>
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="Free online Keystore Generator for Android app development. Create secure signing keys for your Android applications easily and safely.">
     <meta name="keywords" content="Signing Key, Keystore, Certificate, Generator, App Development, Signing Key, Mobile Security, APK Signing, Android">
@@ -13,14 +13,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://makekeystore.com">
-    <meta property="og:title" content="Mobile App Keystore Generator for Android - Secure Signing Tool">
+    <meta property="og:title" content="Mobile App Keystore Generator for Android - Keystore Generator tool">
     <meta property="og:description" content="Create app signing keys easily for Android. Use our free online tool to generate your keystore quickly and safely for Android app development.">
     <meta property="og:image" content="https://makekeystore.com/icon.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://makekeystore.com">
-    <meta property="twitter:title" content="Mobile App Keystore Generator for Android - Secure Signing Tool">
+    <meta property="twitter:title" content="Mobile App Keystore Generator for Android - Keystore Generator tool">
     <meta property="twitter:description" content="Create app signing keys easily for Android. Use our free online tool to generate your keystore quickly and safely for Android app development.">
     <meta property="twitter:image" content="https://makekeystore.com/icon.jpg">
 
@@ -39,6 +39,8 @@
         h1 {
             text-align: center;
             color: #2c3e50;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         h4 {
             margin-top: 0px;
@@ -48,6 +50,8 @@
             text-align: center;
             color: #1bc137;
             padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
         form {
             background: #f9f9f9;
@@ -71,7 +75,7 @@
         button {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 20px;
             background: #3498db;
             color: white;
             border: none;
@@ -116,12 +120,14 @@ select {
     </style>
 </head>
 <body>
-    <h1>Generate Keystore File</h1>
+    
+    <form id="keyGeneratorForm">
+        <h1>Generate Keystore File</h1>
     <div class="m2">
         <h4>The generated keystore file is securely deleted from the server immediately after download.</h4>
         <h4>All requested keystore information is not collected.</h4>
     </div>
-    <form id="keyGeneratorForm">
+
         <label for="alias">Alias</label>
         <input type="text" id="alias" name="alias" required>
 
@@ -166,7 +172,15 @@ select {
         <input type="text" id="C" name="C">
         <div class="description">2-letter country code (e.g., KR, US, JP)</div>
 
+  
+
         <button type="submit" id="gen-btn">Generate keystore</button>
+
+        <footer style="margin-top: 20px; margin-bottom: 10px; padding: 5px; background-color: #f9f9f9; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; text-align: center;">
+            <p style="font-size: 16px; font-weight: bold;line-height: 1.6;">
+                This tool is an independent product not affiliated with Google LLC; "Android" is used solely to indicate compatibility.
+            </p>
+        </footer>
 
         <div id="recaptcha" class="g-recaptcha" data-sitekey="6LdQYFkqAAAAAKF4nPLSV4XN_1DbnZXpD1de8Vsj" data-size="invisible"></div>
     </form>
@@ -262,18 +276,5 @@ select {
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-
-    <footer style="margin-top: 40px; padding: 20px; background-color: #f9f9f9; border-top: 1px solid #ddd;">
-        <h3>Disclaimer</h3>
-        <p style="font-size: 14px; line-height: 1.6;">
-            This keystore generator tool is an independent product and has not been authorized, sponsored, or otherwise approved by Google LLC. "Android" is a trademark of Google LLC.
-        </p>
-        <p style="font-size: 14px; line-height: 1.6;">
-            Our use of the Android trademark is solely to indicate compatibility with the Android operating system and does not imply any affiliation with or endorsement by Google LLC.
-        </p>
-        <p style="font-size: 14px; line-height: 1.6;">
-            This tool is provided "as is" without warranty of any kind, either expressed or implied. Use at your own risk.
-        </p>
-    </footer>
 </body>
 </html>
