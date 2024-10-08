@@ -55,7 +55,41 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7082390218767626"
      crossorigin="anonymous"></script>
 
+
+       <!-- Font Awesome 스크립트 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
     <style>
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.github-button {
+            display: inline-block;
+            background-color: #24292e;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            /* float: right; */
+        }
+
+        .github-button i {
+            margin-right: 5px;
+        }
+
+        /* GitHub 아이콘을 위한 Font Awesome 스타일 */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -149,8 +183,15 @@ select {
 </head>
 <body>
     
-    <form id="keyGeneratorForm">
+    <div class="header-container">
         <h1>Android Keystore Generator</h1>
+        <a href="https://github.com/applovervv/android-keystore-generator" target="_blank" class="github-button">
+            <i class="fab fa-github"></i> Watch on GitHub
+        </a>
+    </div>
+
+    <form id="keyGeneratorForm">
+        
     <div class="m2">
         <h4>The generated keystore file is securely deleted from the server immediately after download.</h4>
         <h4>All requested keystore information is not collected.</h4>
